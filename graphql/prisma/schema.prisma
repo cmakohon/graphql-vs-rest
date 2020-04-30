@@ -21,17 +21,17 @@ model Actors {
   aid       Int       @default(autoincrement()) @id
   birthdate String?
   gender    String?
-  name      Int?
+  name      String?
   cast      Cast[]
 }
 
 model Cast {
-  aid     Int?
-  billing Int?
-  mid     Int?
+  aid     Int
+  billing Int
+  mid     Int
   role    String?
-  actors  Actors? @relation(fields: [aid], references: [aid])
-  movies  Movies? @relation(fields: [mid], references: [mid])
+  actor   Actors @relation(fields: [aid], references: [aid])
+  movie   Movies @relation(fields: [mid], references: [mid])
 
   @@id([mid, billing, aid])
 }
