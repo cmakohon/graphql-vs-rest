@@ -2,7 +2,13 @@ import { gql } from "apollo-server";
 
 export const typeDefs = gql`
   type Query {
+    movie(
+      mid: Int!
+    ): Movie!
     movies: [Movie!]!
+    actor(
+      aid: Int!
+    ): Actor!
     actors: [Actor!]!
     cast: [Cast!]!
   }
