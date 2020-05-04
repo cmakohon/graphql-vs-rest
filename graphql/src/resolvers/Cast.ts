@@ -1,29 +1,9 @@
 function actor(parent: any, args: any, context: any) {
-  return context.prisma.cast
-    .findOne({
-      where: {
-        mid_billing_aid: {
-          mid: parent.mid,
-          billing: parent.billing,
-          aid: parent.aid,
-        },
-      },
-    })
-    .actor();
+  return context.prisma.actors.findOne({ where: {aid: parent.aid}});
 }
 
 function movie(parent: any, args: any, context: any) {
-  return context.prisma.cast
-    .findOne({
-      where: {
-        mid_billing_aid: {
-          mid: parent.mid,
-          billing: parent.billing,
-          aid: parent.aid,
-        },
-      },
-    })
-    .movie();
+  return context.prisma.movies.findOne({ where: {mid: parent.mid}});
 }
 
 const Cast = {

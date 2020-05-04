@@ -21,6 +21,7 @@ export const typeDefs = gql`
     runtime: Int
     title: String
     cast: [Cast]
+    reviews: [Review]
   }
 
   type Actor {
@@ -32,11 +33,18 @@ export const typeDefs = gql`
   }
   
   type Cast {
-    actor: Actor
-    billing: Int
-    movie: Movie
+    aid: ID!
+    actor: Actor!
+    billing: Int!
+    mid: ID!
+    movie: Movie!
     role: String
   }
-`;
 
-//@key(fields: "billing actor { id } movie { id }")
+  type Review {
+    id: ID!
+    mid: ID!
+    text: String
+    movie: Movie!
+  }
+`;

@@ -17,15 +17,15 @@ async function actor(root: any, args: any, context: any) {
 }
 
 function movies(root: any, args: any, context: any) {
-  return context.prisma.movies.findMany({first: 200});
+  return context.prisma.movies.findMany({first: 50});
 }
 
 function actors(root: any, args: any, context: any) {
-  return context.prisma.actors.findMany({first: 200});
+  return context.prisma.actors.findMany({first: 50});
 }
 
 function cast(root: any, args: any, context: any) {
-  return context.prisma.cast.findMany({first: 200});
+  return context.prisma.cast.findMany({first: 50});
 }
 
 const Query = {

@@ -15,6 +15,7 @@ model Movies {
   runtime Int?
   title   String?
   cast    Cast[]
+  reviews Reviews[]
 }
 
 model Actors {
@@ -31,7 +32,14 @@ model Cast {
   mid     Int
   role    String?
   actor   Actors @relation(fields: [aid], references: [aid])
-  movie   Movies @relation(fields: [mid], references: [mid])
+  movies  Movies @relation(fields: [mid], references: [mid])
 
   @@id([mid, billing, aid])
+}
+
+model Reviews {
+  id     Int     @default(autoincrement()) @id
+  mid    Int
+  text   String?
+  movie  Movies  @relation(fields: [mid], references: [mid])
 }

@@ -9,7 +9,7 @@ const prisma = new PrismaClient();
 app.use(bodyParser.json());
 
 app.get("/movies", async (req: any, res: any) => {
-  const movies = await prisma.movies.findMany({ first: 200 });
+  const movies = await prisma.movies.findMany({ first: 50 });
   res.json(movies);
 });
 
@@ -31,8 +31,15 @@ app.get("/movies/:mid/cast", async (req: any, res: any) => {
   res.json(cast);
 });
 
+app.get("/movies/:mid/reviews", async (req: any, res: any) => {
+  const cast = await prisma.movies.findOne({
+    where: { mid: +req.params.mid },
+  }).reviews();
+  res.json(cast);
+});
+
 app.get("/actors", async (req: any, res: any) => {
-  const actors = await prisma.actors.findMany({ first: 200 });
+  const actors = await prisma.actors.findMany({ first: 50 });
   res.json(actors);
 });
 
@@ -59,14 +66,14 @@ app.get("/actors/:aid/movies", async (req: any, res: any) => {
     })
     .cast({
       include: {
-        movie: true,
+        movies: true,
       },
     });
   res.json(movies);
 });
 
 app.get("/cast", async (req: any, res: any) => {
-  const cast = await prisma.cast.findMany({ first: 200 });
+  const cast = await prisma.cast.findMany({ first: 50 });
   res.json(cast);
 });
 
