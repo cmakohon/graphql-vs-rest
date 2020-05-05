@@ -38,6 +38,32 @@ app.get("/movies/:mid/reviews", async (req: any, res: any) => {
   res.json(cast);
 });
 
+app.post("/movies/:mid/reviews", async (req: any, res: any) => {
+  const review = await prisma.reviews.create({
+    data: {
+      text: req.body.text,
+      movie: {
+        connect: {
+          mid: +req.params.mid
+        }
+      }
+    }
+  })
+  res.json(review);
+});
+
+app.put("/movies/:mid/reviews/:rid", async (req: any, res: any) => {
+  const review = await prisma.reviews.update({
+    where: {
+      id: +req.params.rid
+    },
+    data: {
+      text: req.body.text
+    }
+  })
+  res.json(review);
+});
+
 app.get("/actors", async (req: any, res: any) => {
   const actors = await prisma.actors.findMany({ first: 50 });
   res.json(actors);
