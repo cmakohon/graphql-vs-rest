@@ -12,6 +12,11 @@ export const typeDefs = gql`
     actors: [Actor!]!
     cast: [Cast!]!
   }
+
+  type Mutation {
+    addReview(mid: ID!, text: String!): Review!
+    updateReview(rid: ID!, text: String!): Review!
+  }
   
   type Movie {
     mid: ID!

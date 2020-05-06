@@ -1,5 +1,5 @@
 function movie(parent: any, args: any, context: any) {
-  return context.prisma.reviews.findOne({ where: {mid: parent.mid}}).movie();
+  return context.prisma.movies.findOne({ where: {mid: parent.mid}});
 }
 
 const Review = {
