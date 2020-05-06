@@ -23,11 +23,7 @@ app.get("/movies/:mid", async (req: any, res: any) => {
 app.get("/movies/:mid/cast", async (req: any, res: any) => {
   const cast = await prisma.movies.findOne({
     where: { mid: +req.params.mid },
-  }).cast({
-    include: {
-      actor: true
-    }
-  });
+  }).cast();
   res.json(cast);
 });
 
